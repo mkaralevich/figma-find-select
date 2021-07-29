@@ -1,15 +1,17 @@
 <script>
 	import { GlobalCSS } from 'figma-plugin-ds-svelte';
 
-	import { Button, Input, Label, SelectMenu } from 'figma-plugin-ds-svelte';
+	import { Button, Input, Checkbox, Type, Label, SelectMenu } from 'figma-plugin-ds-svelte';
 
 	let pattern = ""
+	let isSelected = false
 
-	function destroyComps() {
+	function selectPattern() {
 		parent.postMessage({
 			pluginMessage: {
-				'type': 'destroy-components',
-				'pattern': pattern
+				'type': 'select-pattern',
+				'pattern': pattern,
+				'isSelected': isSelected
 			}
 		}, '*');
 	}
@@ -27,21 +29,20 @@
 
 </script>
 
+<style>
+	.width-full {
+		width: 100%;
+	}
+</style>
 
 <div class="wrapper p-xxsmall">
 
-	<Label>Exclude pattern</Label>
-	<Input bind:value={pattern} class="mb-xxsmall" />
-
-	<div class="flex p-xxsmall mb-xsmall">
-		<Button on:click={cancel} variant="secondary" class="mr-xsmall">Cancel</Button>
-		<Button on:click={destroyComps} class="mr-xsmall">Destroy</Button>
-		<Button on:click={unstyleEls}>Unstyle</Button>
+	<div class="mb-xsmall mt-xsmall">
+		<Type size="xsmall" weight="bold">Select pattern</Type>
+	</div>
+	<div class="flex justify-content-between width-full">
+		<Input placeholder="Enter pattern..." bind:value={pattern} class="mb-xxsmall width-full" />
+		<Button on:click={selectPattern} class="mr-xsmall">Select</Button>
 	</div>
 
 </div>
-
-
-<style>
-
-</style>

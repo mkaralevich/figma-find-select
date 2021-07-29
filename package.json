@@ -1,9 +1,9 @@
 {
-	"name": "destroyer",
+	"name": "filter-select",
 	"version": "1.0.0",
 	"scripts": {
 		"build": "rollup -c",
-		"dev": "rollup -c -w",
+		"dev": "rollup -c -w -p 3039",
 		"start": "sirv public"
 	},
 	"devDependencies": {
