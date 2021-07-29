@@ -30,19 +30,24 @@
 </script>
 
 <style>
-	.width-full {
-		width: 100%;
+	.flex-grow {
+		flex-grow: 1;
+	}
+
+	.flex-gap {
+		gap: 8px
 	}
 </style>
 
-<div class="wrapper p-xxsmall">
+<div class="wrapper p-xsmall">
 
-	<div class="mb-xsmall mt-xsmall">
-		<Type size="xsmall" weight="bold">Select pattern</Type>
+	<div class="mb-xsmall flex-grow">
+		<Type size="xsmall" weight="bold">Find layers</Type>
 	</div>
-	<div class="flex justify-content-between width-full">
-		<Input placeholder="Enter pattern..." bind:value={pattern} class="mb-xxsmall width-full" />
-		<Button on:click={selectPattern} class="mr-xsmall">Select</Button>
+
+	<div class="flex justify-content-between flex-gap ">
+		<Input placeholder="Enter pattern..." bind:value={pattern} class="mb-xxsmall flex-grow" />
+		<Button on:click={selectPattern}>Select</Button>
 	</div>
 
 </div>
