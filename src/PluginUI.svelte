@@ -30,10 +30,6 @@
 </script>
 
 <style>
-	.flex-grow {
-		flex-grow: 1;
-	}
-
 	.flex-gap {
 		gap: 8px
 	}
@@ -42,10 +38,10 @@
 <div class="wrapper p-xsmall">
 
 	<div class="mb-xsmall flex-grow">
-		<Type size="xsmall" weight="bold">Find layers</Type>
+		<Type size="xsmall" weight="bold">Find layers in selection</Type>
 	</div>
 
-	<div class="flex justify-content-between flex-gap ">
+	<div class="flex justify-content-between flex-gap">
 		<Input placeholder="Enter pattern..." bind:value={pattern} class="mb-xxsmall flex-grow" />
 		<Button on:click={selectPattern}>Select</Button>
 	</div>
