@@ -2,7 +2,11 @@
 	import { GlobalCSS } from 'figma-plugin-ds-svelte';
 	import { Button, Input, Checkbox, Type, Label, SelectMenu } from 'figma-plugin-ds-svelte';
 
-	window.addEventListener('load', () => { document.querySelector("input").focus() })
+	window.addEventListener('load', () => {
+		const input = document.querySelector("input")
+		input.focus()
+		input.onkeydown = (e) => { if (e.keyCode === 13) selectPattern() }
+	})
 
 	let pattern = ""
 	let isSelected = false

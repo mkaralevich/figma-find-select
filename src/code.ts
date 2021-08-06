@@ -2,6 +2,7 @@ figma.showUI(__html__, { width: 320, height: 96 });
 
 figma.ui.onmessage = (msg) => {
 	const selection = [...figma.currentPage.selection];
+	if (selection.length === 0) return figma.notify(`Please select layers first`);
 	let acc = [];
 
 	const findPattern = (arr) => {
@@ -23,5 +24,10 @@ figma.ui.onmessage = (msg) => {
 	};
 	findPattern(selection);
 	figma.currentPage.selection = acc;
+	const postMessage = () => {
+		if (acc.length === 0) return figma.notify(`Nothing found`);
+		if (acc.length > 0) return figma.notify(`✓ Selected ${acc.length} layers`);
+	};
+	postMessage();
 	figma.closePlugin();
 };
