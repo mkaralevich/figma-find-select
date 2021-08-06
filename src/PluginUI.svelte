@@ -1,7 +1,8 @@
 <script>
 	import { GlobalCSS } from 'figma-plugin-ds-svelte';
-
 	import { Button, Input, Checkbox, Type, Label, SelectMenu } from 'figma-plugin-ds-svelte';
+
+	window.addEventListener('load', () => { document.querySelector("input").focus() })
 
 	let pattern = ""
 	let isSelected = false

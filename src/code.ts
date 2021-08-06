@@ -2,19 +2,26 @@ figma.showUI(__html__, { width: 320, height: 96 });
 
 figma.ui.onmessage = (msg) => {
 	const selection = [...figma.currentPage.selection];
+	let acc = [];
 
 	const findPattern = (arr) => {
-		return arr.filter((node) => {
-			if (node.name.match(msg.pattern)) return true;
-			if (node.children) {
-				node.children.filter((child) => {
-					if (child.name.match(msg.pattern)) return true;
-					findPattern(child.children);
-				});
-			}
-		});
+		if (arr && arr.length > 0) {
+			arr.map((node) => {
+				if (node.name.match(msg.pattern)) {
+					acc = [...acc, node];
+				}
+				if (node.children) {
+					node.children.map((child) => {
+						if (child.name.match(msg.pattern)) {
+							acc = [...acc, child];
+						}
+						findPattern(child.children);
+					});
+				}
+			});
+		}
 	};
-	const found = [...findPattern(selection)];
-	figma.currentPage.selection = found;
+	findPattern(selection);
+	figma.currentPage.selection = acc;
 	figma.closePlugin();
 };
